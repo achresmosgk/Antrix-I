@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
-import {MapContainer,
+import {
+  MapContainer,
   TileLayer,
   Marker,
   useMapEvents,
@@ -57,14 +58,33 @@ export default function MapClient() {
     return null;
   }
 
-  if (!ready) return <p>Loading map…</p>;
+  if (!ready) return <p style={{ color: "white" }}>Loading map…</p>;
 
   return (
-    <>
+    <div
+      style={{
+        width: "92%",
+        margin: "0 auto",
+        padding: "16px",
+        borderRadius: "20px",
+        background: "rgba(255, 255, 255, 0.15)",
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+        border: "1px solid rgba(255, 255, 255, 0.25)",
+        boxShadow: "0 8px 32px rgba(0, 0, 0, 0.25)",
+        color: "white",
+      }}
+    >
+      {/* Map */}
       <MapContainer
         center={[20, 78]}
         zoom={5}
-        style={{ height: "500px", width: "100%" }}
+        style={{
+          height: "450px",
+          width: "100%",
+          borderRadius: "16px",
+          overflow: "hidden",
+        }}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <ClickHandler />
@@ -72,8 +92,27 @@ export default function MapClient() {
         {ndwiTile && <TileLayer url={ndwiTile} opacity={0.6} />}
       </MapContainer>
 
-      {loading && <p>Fetching NDWI…</p>}
-      {ndwi !== null && <p>Mean NDWI: <b>{ndwi.toFixed(3)}</b></p>}
-    </>
+      {/* Glass Info Panel */}
+      <div
+        style={{
+          marginTop: "12px",
+          padding: "12px 16px",
+          borderRadius: "14px",
+          background:
+            "linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05))",
+          backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          boxShadow: "0 0 20px rgba(255, 255, 255, 0.15)",
+        }}
+      >
+        {loading && <p>Fetching NDWI…</p>}
+        {ndwi !== null && (
+          <p>
+            Mean NDWI: <b>{ndwi.toFixed(3)}</b>
+          </p>
+        )}
+      </div>
+    </div>
   );
 }
