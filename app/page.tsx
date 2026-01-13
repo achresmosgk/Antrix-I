@@ -76,36 +76,8 @@ export default function Home() {
           </div>
 
           {/* Center */}
-          <div style={{ opacity: 0.85, fontSize: "14px" }}>
+          <div style={{ opacity: 0.85, fontSize: "14px" ,alignItems:"center"}}>
             Click Anywhere On The Map To Compute NDWI
-          </div>
-
-          {/* Right */}
-          <div style={{ display: "flex", gap: "14px" }}>
-            <button
-              style={{
-                background: "rgba(255,255,255,0.2)",
-                border: "1px solid rgba(255,255,255,0.3)",
-                borderRadius: "12px",
-                padding: "6px 14px",
-                color: "white",
-                cursor: "pointer",
-              }}
-            >
-              About
-            </button>
-            <button
-              style={{
-                background: "rgba(255,255,255,0.2)",
-                border: "1px solid rgba(255,255,255,0.3)",
-                borderRadius: "12px",
-                padding: "6px 14px",
-                color: "white",
-                cursor: "pointer",
-              }}
-            >
-              Docs
-            </button>
           </div>
         </div>
 
