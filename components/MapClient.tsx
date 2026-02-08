@@ -8,6 +8,27 @@ import {
   Marker,
   useMapEvents,
 } from "react-leaflet";
+import type { Map as LeafletMap } from "leaflet";
+import { useMap } from "react-leaflet";
+import type { LatLngExpression } from "leaflet";
+
+function MapController({
+  target,
+}: {
+  target: LatLngExpression | null;
+}) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (target) {
+      map.setView(target, 12);
+    }
+  }, [target, map]);
+
+  return null;
+}
+
+
 
 export default function MapClient() {
   const [ready, setReady] = useState(false);
@@ -15,6 +36,9 @@ export default function MapClient() {
   const [ndwi, setNdwi] = useState<number | null>(null);
   const [ndwiTile, setNdwiTile] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [map, setMap] = useState<LeafletMap | null>(null);
+  const [query, setQuery] = useState("");
+
 
   useEffect(() => {
     import("leaflet").then((L) => {
@@ -46,6 +70,33 @@ export default function MapClient() {
       setLoading(false);
     }
   }
+  async function searchPlace() {
+  if (!query) return;
+
+  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+    query
+  )}`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (!data.length) {
+      alert("Place not found");
+      return;
+    }
+
+    const lat = parseFloat(data[0].lat);
+    const lon = parseFloat(data[0].lon);
+
+    setPoint({ lat, lon });
+    fetchNdwi(lat, lon);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+
 
   function ClickHandler() {
     useMapEvents({
@@ -75,22 +126,63 @@ export default function MapClient() {
         color: "white",
       }}
     >
-      {/* Map */}
-      <MapContainer
-        center={[20, 78]}
-        zoom={5}
-        style={{
-          height: "450px",
-          width: "100%",
-          borderRadius: "16px",
-          overflow: "hidden",
-        }}
-      >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <ClickHandler />
-        {point && <Marker position={[point.lat, point.lon]} />}
-        {ndwiTile && <TileLayer url={ndwiTile} opacity={0.6} />}
-      </MapContainer>
+      {/* 🔍 Search Bar */}
+<div
+  style={{
+    display: "flex",
+    gap: "8px",
+    marginBottom: "12px",
+  }}
+>
+  <input
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
+    placeholder="Search place (e.g. Chennai, Ganga River)"
+    style={{
+      flex: 1,
+      padding: "10px 14px",
+      borderRadius: "12px",
+      border: "none",
+      outline: "none",
+    }}
+  />
+  <button
+    onClick={searchPlace}
+    style={{
+      padding: "10px 16px",
+      borderRadius: "12px",
+      border: "none",
+      cursor: "pointer",
+      fontWeight: 600,
+    }}
+  >
+    Search
+  </button>
+</div>
+  <MapContainer
+  center={[20, 78]}
+  zoom={5}
+  style={{
+    height: "450px",
+    width: "100%",
+    borderRadius: "16px",
+    overflow: "hidden",
+  }}
+>
+
+  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+  <ClickHandler />
+
+  {/* 👇 controls panning */}
+  <MapController
+    target={point ? [point.lat, point.lon] : null}
+  />
+
+  {point && <Marker position={[point.lat, point.lon]} />}
+  {ndwiTile && <TileLayer url={ndwiTile} opacity={0.6} />}
+</MapContainer>
+
 
       {/* Glass Info Panel */}
       <div
