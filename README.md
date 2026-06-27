@@ -103,12 +103,12 @@ NDWI is widely used in hydrology, flood monitoring, drought assessment, and envi
 
 ## ✦ Features
 
-- **🌍 Click-to-Compute** — Click anywhere on the interactive Leaflet map to instantly query NDWI
-- **🔍 Place Search** — Geocode any place name (city, river, lake) via Nominatim
-- **🛰️ Live Tile Overlay** — NDWI raster tiles rendered directly on the map at 60% opacity
-- **💧 Fluid WebGL Background** — Real-time GPU-based Navier-Stokes fluid simulation with mouse interaction
-- **🪟 Glassmorphism UI** — Frosted-glass navbar, info panels, and map container
-- **📱 Responsive** — Works on desktop and mobile
+- **Click-to-Compute** — Click anywhere on the interactive Leaflet map to instantly query NDWI
+- **Place Search** — Geocode any place name (city, river, lake) via Nominatim
+- **Live Tile Overlay** — NDWI raster tiles rendered directly on the map at 60% opacity
+- **Fluid WebGL Background** — Real-time GPU-based Navier-Stokes fluid simulation with mouse interaction
+- **Glassmorphism UI** — Frosted-glass navbar, info panels, and map container
+- **Responsive** — Works on desktop and mobile
 
 ---
 
