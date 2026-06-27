@@ -18,7 +18,8 @@
 
 <br/>
 
-![Antrix-I Demo](https://workfolk.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/🌍%20Live%20Demo-workfolk.vercel.app-5227FF?style=for-the-badge)](https://workfolk.vercel.app/)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://workfolk.vercel.app/)
 
 </div>
 
@@ -35,6 +36,7 @@ Click a point on the interactive map. The backend fetches the nearest Sentinel-2
 All wrapped in a fluid, GPU-accelerated WebGL interface built with Three.js fluid simulation and glassmorphism UI.
 
 ---
+![Antrix-I Screenshot](./asset/Screenshot 2026-06-27 144429.png)
 
 ## ✦ What Is NDWI?
 
@@ -109,6 +111,14 @@ NDWI is widely used in hydrology, flood monitoring, drought assessment, and envi
 - **Fluid WebGL Background** — Real-time GPU-based Navier-Stokes fluid simulation with mouse interaction
 - **Glassmorphism UI** — Frosted-glass navbar, info panels, and map container
 - **Responsive** — Works on desktop and mobile
+
+---
+
+## ✦ Live Demo
+
+> **[https://workfolk.vercel.app/](https://workfolk.vercel.app/)**
+>
+> No setup required. Open the link, click anywhere on the map, and get NDWI results instantly.
 
 ---
 
