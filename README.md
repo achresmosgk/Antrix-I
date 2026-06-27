@@ -36,7 +36,7 @@ Click a point on the interactive map. The backend fetches the nearest Sentinel-2
 All wrapped in a fluid, GPU-accelerated WebGL interface built with Three.js fluid simulation and glassmorphism UI.
 
 ---
-![Antrix-I Screenshot](./asset/Screenshot 2026-06-27 144429.png)
+![Antrix-I Screenshot](./asset/demo.png)
 
 ## ✦ What Is NDWI?
 
